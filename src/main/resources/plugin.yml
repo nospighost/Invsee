@@ -11,9 +11,6 @@ commands:
     permission: be.invsee
     permission-message: "§cDu hast keine Berechtigung, diesen Befehl zu verwenden."
 permissions:
-  be.invsee:
-    description: Erlaubt die Nutzung des /invsee Befehls.
-    default: false
   be.invsee.view:
     description: Erlaubt das Ansehen von Inventaren.
     default: false

@@ -16,43 +16,50 @@ public class InventoryTakeListener implements Listener {
         }
 
         Player player = (Player) event.getWhoClicked();
-        Inventory clickedInventory = event.getInventory();
-        InventoryHolder holder = clickedInventory.getHolder();
-            Player targetPlayer = (Player) holder;
-            String playerRole = getRole(player);
-            String targetRole = getRole(targetPlayer);
+        Inventory clickedInventory = event.getClickedInventory();
 
-            switch (playerRole) {
-                case "view":
-                    event.setCancelled(true);
-                    break;
-
-                case "supporter":
-                    if (!targetRole.equals("none")) {
-                        event.setCancelled(true);
-                    }
-                    break;
-                case "mod":
-                    if (targetRole.equals("mod") || targetRole.equals("teamlead") || targetRole.equals("admin")) {
-                        event.setCancelled(true);
-                    }
-                    break;
-                case "teamlead":
-                    if (targetRole.equals("admin")) {
-                        event.setCancelled(true);
-                    }
-                    break;
-
-                case "admin":
-                    break;
-
-                default:
-                  event.setCancelled(true);
-                    player.sendMessage("§cDu hast keine Berechtigung, mit diesem Inventar zu interagieren.");
-                    break;
-            }
+        if (clickedInventory == null) {
+            return; // Kein Inventory angeklickt
         }
 
+        InventoryHolder holder = clickedInventory.getHolder();
+
+        if (!(holder instanceof Player)) {
+            return; // Kein Spieler-Inventar
+        }
+
+        Player targetPlayer = (Player) holder;
+
+        String playerRole = getRole(player);
+        String targetRole = getRole(targetPlayer);
+
+        switch (playerRole) {
+            case "view":
+                event.setCancelled(true);
+                break;
+            case "supporter":
+                if (!targetRole.equals("none")) {
+                    event.setCancelled(true);
+                }
+                break;
+            case "mod":
+                if (targetRole.equals("mod") || targetRole.equals("teamlead") || targetRole.equals("admin")) {
+                    event.setCancelled(true);
+                }
+                break;
+            case "teamlead":
+                if (targetRole.equals("admin")) {
+                    event.setCancelled(true);
+                }
+                break;
+            case "admin":
+                // Admin kann alles, nichts blockieren
+                break;
+            default:
+                event.setCancelled(true);
+                break;
+        }
+    }
 
     public static String getRole(Player player) {
         if (player.hasPermission("be.invsee.admin")) return "admin";
