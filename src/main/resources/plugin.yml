@@ -1,0 +1,31 @@
+name: Invsee
+version: '1.0'
+main: de.Main.invsee.Main
+api-version: '1.21'
+authors: [ nospighost, Fabian260108 ]
+description: Ein Job Plugin, Perfekt für Citybuild Server
+commands:
+  invsee:
+    description: Zeigt oder bearbeitet das Inventar eines Spielers.
+    usage: /invsee <Spieler>
+    permission: be.invsee
+    permission-message: "§cDu hast keine Berechtigung, diesen Befehl zu verwenden."
+permissions:
+  be.invsee.view:
+    description: Erlaubt das Ansehen von Inventaren.
+    default: false
+  be.invsee.supporter:
+    description: Erlaubt das Ansehen von Inventaren normaler Spieler.
+    default: false
+  be.invsee.mod:
+    description: Erlaubt das Ansehen und Bearbeiten von Inventaren normaler Spieler und Supporter.
+    default: false
+  be.invsee.teamlead:
+    description: Vollzugriff auf Inventare, außer von Admins.
+    default: false
+  be.invsee.admin:
+    description: Vollzugriff auf alle Inventare.
+    default: false
+  be.invsee.bypass:
+    description: Ignoriert Sichtbarkeits-Toggle.
+    default: op
