@@ -7,6 +7,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class InvseeCommand implements CommandExecutor {
+
+
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
         Player player = (Player) commandSender;
@@ -15,20 +17,27 @@ public class InvseeCommand implements CommandExecutor {
             Bukkit.getConsoleSender().sendMessage("Du musst ein Spieler sein um diesen Befehl auszuführen");
         }
 
+
         if (!(player.hasPermission("be.invsee"))) {
-            player.sendMessage("Fehlende Rechte: be.invsee");
-            return false;
+            player.sendMessage("§cFehlende Rechte: be.invsee.view");
+            return true;
         }
+
         if (args.length == 1) {
             Player targetPlayer = Bukkit.getPlayer(args[0]);
 
             if (targetPlayer == null || !targetPlayer.isOnline()) {
                 player.sendMessage("§cDieser Spieler nicht online!");
-                return false;
+                return true;
             }
-
+            if (targetPlayer.hasPermission("be.invsee.denyview") && !player.hasPermission("be.invsee.bypass")) {
+                player.sendMessage("§aDu darfst diesem Spieler nicht ins Inventar gucken");
+                return true;
+            }
             player.openInventory(targetPlayer.getInventory());
 
+        } else {
+            player.sendMessage();
         }
         return true;
     }

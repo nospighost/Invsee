@@ -10,12 +10,17 @@ commands:
     usage: /invsee <Spieler>
     permission: be.invsee
     permission-message: "§cDu hast keine Berechtigung, diesen Befehl zu verwenden."
+  invseetoggle:
+    description: Schalte an und aus, das andere Leute in dein Inv gucken können (Team ausgeschlossen)
+    usage: /invseetoggle
+    permission: be.invsee.toggle
+
 permissions:
-  be.invsee.view:
-    description: Erlaubt das Ansehen von Inventaren.
-    default: false
   be.invsee.supporter:
     description: Erlaubt das Ansehen von Inventaren normaler Spieler.
+    default: false
+  be.invsee:
+    description: Erlaubt das Ansehen von Inventaren normalen Spieler.
     default: false
   be.invsee.mod:
     description: Erlaubt das Ansehen und Bearbeiten von Inventaren normaler Spieler und Supporter.
@@ -26,6 +31,12 @@ permissions:
   be.invsee.admin:
     description: Vollzugriff auf alle Inventare.
     default: false
+  be.invsee.denyview:
+    description: Verbietet normalen Usern das Gucken in Fremde Inventare
+    default: false
   be.invsee.bypass:
     description: Ignoriert Sichtbarkeits-Toggle.
-    default: op
+    default: false
+  be.invsee.toggle:
+    description: Schalte an und aus, das andere Leute in dein Inv gucken können (Team ausgeschlossen)
+    default: false
