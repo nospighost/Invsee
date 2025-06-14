@@ -1,4 +1,4 @@
-package de.Main.invsee;
+package de.Main.invsee.Commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -30,7 +30,7 @@ public class InvseeCommand implements CommandExecutor {
                 player.sendMessage("§cDieser Spieler nicht online!");
                 return true;
             }
-            if (targetPlayer.hasPermission("be.invsee.denyview") && !player.hasPermission("be.invsee.bypass")) {
+            if (targetPlayer.hasPermission("be.invsee.denyview") && !player.hasPermission("be.invsee.bypass") && !player.hasPermission("be.invsee.admin")) {
                 player.sendMessage("§aDu darfst diesem Spieler nicht ins Inventar gucken");
                 return true;
             }

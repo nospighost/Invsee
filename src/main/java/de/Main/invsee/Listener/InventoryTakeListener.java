@@ -1,4 +1,4 @@
-package de.Main.invsee.Manager;
+package de.Main.invsee.Listener;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -32,27 +32,23 @@ public class InventoryTakeListener implements Listener {
             switch (playerRole) {
                 case "view":
                     event.setCancelled(true);
-                    player.sendMessage("§cDu darfst dieses Inventar nur ansehen.");
                     break;
 
                 case "supporter":
                     if (!targetRole.equals("none")) {
                         event.setCancelled(true);
-                        player.sendMessage("§cDu darfst nur Inventare von normalen Spielern ansehen.");
                     }
                     break;
 
                 case "mod":
                     if (targetRole.equals("mod") || targetRole.equals("teamlead") || targetRole.equals("admin")) {
                         event.setCancelled(true);
-                        player.sendMessage("§cDu darfst keine Inventare von gleich- oder höherrangigen Teammitgliedern bearbeiten.");
                     }
                     break;
 
                 case "teamlead":
                     if (targetRole.equals("admin") || targetRole.equals("teamlead")) {
                         event.setCancelled(true);
-                        player.sendMessage("§cDu darfst keine Inventare von Admins bearbeiten.");
                     }
                     break;
 
@@ -61,7 +57,6 @@ public class InventoryTakeListener implements Listener {
 
                 default:
                     event.setCancelled(true);
-                    player.sendMessage("§cDu hast keine Berechtigung, mit diesem Inventar zu interagieren.");
                     break;
             }
         }

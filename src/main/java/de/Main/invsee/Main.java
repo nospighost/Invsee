@@ -1,6 +1,8 @@
     package de.Main.invsee;
 
-    import de.Main.invsee.Manager.InventoryTakeListener;
+    import de.Main.invsee.Commands.InvseeCommand;
+    import de.Main.invsee.Commands.InvseeToggleCommand;
+    import de.Main.invsee.Listener.InventoryTakeListener;
     import net.luckperms.api.LuckPerms;
     import org.bukkit.Bukkit;
     import org.bukkit.plugin.java.JavaPlugin;
@@ -22,6 +24,5 @@
 
         @Override
         public void onDisable() {
-            // Plugin shutdown logic
         }
     }
